@@ -1,17 +1,23 @@
 package player;
 
-import card.Card;
 
-public abstract class Player {
+import java.util.ArrayList;
+import game.*;
+import card.*;
+
+
+public class Player {
 	
-	private int id;
+	private String name;
+	
+
 	private int nbRocks;
 	private int nbMenhirs;
-	private card.Card[] hand;
-	private game.Game currentGame;
+	private ArrayList<Card> hand;
+	private Game currentGame;
 	
 	
-	public void playFertilizer(card.Ingredient card) {
+	public void playFertilizer(Ingredient card) {
 		int season = currentGame.getSeason();
 		int[] fertilizerStrength = card.getFertilizerVector();
 		
@@ -23,7 +29,7 @@ public abstract class Player {
 		
 	}
 	
-	public void playGiant(card.Ingredient card) {
+	public void playGiant(Ingredient card) {
 		int season = currentGame.getSeason();
 		int[] giantStrength = card.getGiantVector();
 		
@@ -31,25 +37,19 @@ public abstract class Player {
 		
 	}
 
-	public void playFarfadet(card.Ingredient card, player.Player victim) {
+	public void playFarfadet(Ingredient card, player.Player victim) {
 	
 	}
 
-	public Player(int id, int nbRocks, int nbMenhirs, Card[] hand) {
+	public Player(String name, Game game) {
 		super();
-		this.id = id;
-		this.nbRocks = nbRocks;
-		this.nbMenhirs = nbMenhirs;
-		this.hand = hand;
+		this.name = name;
+		this.nbRocks = 2;
+		this.nbMenhirs = 0;
+		this.hand = new ArrayList<Card>();
+		this.currentGame = game;
 	}
 
-	public int getId() {
-		return id;
-	}
-
-	public void setId(int id) {
-		this.id = id;
-	}
 
 	public int getNbRocks() {
 		return nbRocks;
@@ -67,14 +67,17 @@ public abstract class Player {
 		this.nbMenhirs = nbMenhirs;
 	}
 
-	public card.Card[] getHand() {
+	public String getName() {
+		return name;
+	}
+
+	public ArrayList<Card> getHand() {
 		return hand;
 	}
 
-	public void setHand(card.Card[] hand) {
-		this.hand = hand;
+	public void setHand(Card card) {
+		this.hand.add(card);
 	}
-	
 	
 	
 }

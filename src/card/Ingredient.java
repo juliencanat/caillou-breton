@@ -10,29 +10,21 @@ public class Ingredient extends Card {
 		return giantVector;
 	}
 
-	public void setGiantVector(int[] giantVector) {
-		this.giantVector = giantVector;
-	}
-
 	public int[] getFarfadetVector() {
 		return farfadetVector;
-	}
-
-	public void setFarfadetVector(int[] farfadetVector) {
-		this.farfadetVector = farfadetVector;
 	}
 
 	public int[] getFertilizerVector() {
 		return fertilizerVector;
 	}
 
-	public void setFertilizerVector(int[] fertilizerVector) {
+	public Ingredient(String name, int[] giantVector, int[] farfadetVector, int[] fertilizerVector) {
+		super(name);
+		this.giantVector = giantVector;
+		this.farfadetVector = farfadetVector;
 		this.fertilizerVector = fertilizerVector;
 	}
 
-	public Ingredient(String name, boolean isDistributed) {
-		super(name, isDistributed);
-		// TODO Auto-generated constructor stub
-	}
+	
 
 }

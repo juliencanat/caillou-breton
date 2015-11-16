@@ -1,5 +1,6 @@
 package card;
 
+
 public class Ally extends Card {
 	
 	private int typeAllié;
@@ -12,8 +13,8 @@ public class Ally extends Card {
 		this.typeAllié = typeAllié;
 	}
 
-	public Ally(String name, boolean isDistributed) {
-		super(name, isDistributed);
+	public Ally(String name) {
+		super(name);
 		// TODO Auto-generated constructor stub
 	}
 
