@@ -21,12 +21,14 @@ public class Player {
 		int season = currentGame.getSeason();
 		int[] fertilizerStrength = card.getFertilizerVector();
 		
-		if( fertilizerStrength[season] > this.nbRocks)
+		if( fertilizerStrength[season] > this.nbRocks) {
 			this.nbMenhirs = this.nbMenhirs + this.nbRocks;
-		else
+			this.nbRocks = 0;
+		}
+		else {
 			this.nbMenhirs = this.nbMenhirs + fertilizerStrength[season];
-		
-		
+			this.nbRocks -= fertilizerStrength[season];
+		}
 	}
 	
 	public void playGiant(Ingredient card) {
@@ -37,7 +39,7 @@ public class Player {
 		
 	}
 
-	public void playFarfadet(Ingredient card, player.Player victim) {
+	public void playFarfadet(Ingredient card, Player victim) {
 	
 	}
 
@@ -77,6 +79,11 @@ public class Player {
 
 	public void setHand(Card card) {
 		this.hand.add(card);
+	}
+
+	@Override
+	public String toString() {
+		return " nom=" + name + ", Graine(s)=" + nbRocks + ", Menhir(s)=" + nbMenhirs + ", Main=" + hand.toString();
 	}
 	
 	

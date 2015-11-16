@@ -8,16 +8,22 @@ import player.Player;
 import card.*;
 
 public abstract class Game {
-
-	private int season; // spring = 1 ; summer = 2 ; autumn = 3 ; winter = 4
-	private Scanner user_input = new Scanner( System.in );
 	
+	public final static int SPRING = 0;
+	public final static int SUMMER = 1;
+	public final static int AUTUMN = 2;
+	public final static int WINTER = 3;
+	public final static String[] SEASONS = {"Printemps", "Ete", "Automne", "Hiver"};
+
+	private int season;
+	
+	private Scanner user_input = new Scanner( System.in );
 	protected ArrayList<Player> players;
 	
 	
 	public Game() {
 		super();
-		this.season = 1;
+		this.season = SPRING;
 		
 		//Instantiate the players
 		System.out.println("Combien de joueurs ?");
@@ -30,6 +36,7 @@ public abstract class Game {
 			players.add(i, new Player(name, this));
 		}
 		// Instantiate the players END
+		
 		// Distribute cards
 		Deck deck = new Deck(Deck.INGREDIENT);
 		for(ListIterator<Player> p = players.listIterator(); p.hasNext();) {
@@ -52,21 +59,14 @@ public abstract class Game {
 	}
 
 
-	public void setSeason(int season) {
-		this.season = season;
+	public void setSeason() {
+		this.season += season;
 	}
 
 
-	public int getNbPlayer() {
-		return players.size();
+	public ArrayList<Player> getPlayers() {
+		return players;
 	}
 
-
-
-
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-
-	}
 
 }

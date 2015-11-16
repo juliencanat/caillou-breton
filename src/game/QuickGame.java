@@ -1,7 +1,9 @@
 package game;
 
 import java.util.ListIterator;
+import java.util.Scanner;
 
+import card.Ingredient;
 import player.Player;
 
 public class QuickGame extends Game {
@@ -18,15 +20,48 @@ public class QuickGame extends Game {
 			}
 	
 
-	public QuickGame(int season) {
+	public QuickGame() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-
+		QuickGame game = new QuickGame();
+		Scanner user_input = new Scanner( System.in );
+		
+		while(game.getSeason() <= WINTER) {
+			System.out.println("Saison actuelle : " + SEASONS[game.getSeason()]);
+			for(ListIterator<Player> p = game.getPlayers().listIterator(); p.hasNext();) {
+				Player currentPlayer = p.next();
+				System.out.println("Au tour de " + currentPlayer.getName());
+				System.out.println(currentPlayer.toString());
+				
+				System.out.println("Quelle carte voulez-vous jouer ?");
+				int carteJoue = user_input.nextInt();
+				
+				System.out.println("Quelle action souhaitez vous effectuer : G/E/F ?");
+				
+				String actionJoue = user_input.next();
+				
+				
+				if(actionJoue.equals("G"))
+					currentPlayer.playGiant((Ingredient) currentPlayer.getHand().get(carteJoue));
+				else if(actionJoue.equals("E"))
+					currentPlayer.playFertilizer((Ingredient) currentPlayer.getHand().get(carteJoue));
+				else if(actionJoue.equals("F")) {
+					System.out.println("Quel joueur souhaitez vous voler ?");
+					int victim = user_input.nextInt();  
+					currentPlayer.playFarfadet((Ingredient) currentPlayer.getHand().get(carteJoue), game.getPlayers().get(victim));
+				}
+				else
+					System.out.println("Tour passé");
+				
+				currentPlayer.getHand().remove(carteJoue); //On retire la carte jouée
+			}
+			game.setSeason(); // Change the season to the next one
+		}
+			game.designateWinner();
+			user_input.close();
 	}
 
 }

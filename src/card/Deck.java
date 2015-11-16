@@ -9,7 +9,7 @@ public class Deck extends LinkedList<Card> {
 	
 	public final static int INGREDIENT = 0;
 	public final static int ALLY = 1;
-	public final static String[] COULEURS = {"Ingredient", "Ally"};
+	public final static String[] TYPEOFDECK = {"Ingredient", "Ally"};
 	
 	//Matrice des cartes Ingrédients
 	public final static int[][] rayonDeLune1 = {{1,1,1,1}, {2,0,1,1}, {2,0,2,0}};
@@ -28,6 +28,7 @@ public class Deck extends LinkedList<Card> {
 
 	
 	private int typeOfDeck;
+
 	
 	public void shuffle() {
 		Collections.shuffle(this);
@@ -41,25 +42,23 @@ public class Deck extends LinkedList<Card> {
 	
 	public Deck(int typeOfDeck) {
 		super();
-		
 		this.typeOfDeck = typeOfDeck;
 		switch(this.typeOfDeck) {
 		
 		case ALLY:
-			
-			this.add(new Ingredient("Rayon de Lune", rayonDeLune1[1], rayonDeLune1[2], rayonDeLune1[3]));
-			this.add(new Ingredient("Rayon de Lune", rayonDeLune2[1], rayonDeLune2[2], rayonDeLune2[3]));
-			this.add(new Ingredient("Rayon de Lune", rayonDeLune3[1], rayonDeLune3[2], rayonDeLune3[3]));
-			this.add(new Ingredient("Chant de Sirene", chantDeSirene1[1], chantDeSirene1[2], chantDeSirene1[3]));
-			this.add(new Ingredient("Chant de Sirene", chantDeSirene2[1], chantDeSirene2[2], chantDeSirene2[3]));
-			this.add(new Ingredient("Chant de Sirene", chantDeSirene3[1], chantDeSirene3[2], chantDeSirene3[3]));
-			this.add(new Ingredient("Larme de Dryade", larmeDeDryade1[1], larmeDeDryade1[2], larmeDeDryade1[3]));
-			this.add(new Ingredient("Larme de Dryade", larmeDeDryade2[1], larmeDeDryade2[2], larmeDeDryade2[3]));
-			this.add(new Ingredient("Larme de Dryade", larmeDeDryade3[1], larmeDeDryade3[2], larmeDeDryade3[3]));
-			this.shuffle();
-			this.shuffle();
 			break;
 		case INGREDIENT:
+			this.push(new Ingredient("Rayon de Lune", rayonDeLune1[0], rayonDeLune1[1], rayonDeLune1[2]));
+			this.push(new Ingredient("Rayon de Lune", rayonDeLune2[0], rayonDeLune2[1], rayonDeLune2[2]));
+			this.push(new Ingredient("Rayon de Lune", rayonDeLune3[0], rayonDeLune3[1], rayonDeLune3[2]));
+			this.push(new Ingredient("Chant de Sirene", chantDeSirene1[0], chantDeSirene1[1], chantDeSirene1[2]));
+			this.push(new Ingredient("Chant de Sirene", chantDeSirene2[0], chantDeSirene2[1], chantDeSirene2[2]));
+			this.push(new Ingredient("Chant de Sirene", chantDeSirene3[0], chantDeSirene3[1], chantDeSirene3[2]));
+			this.push(new Ingredient("Larme de Dryade", larmeDeDryade1[0], larmeDeDryade1[1], larmeDeDryade1[2]));
+			this.push(new Ingredient("Larme de Dryade", larmeDeDryade2[0], larmeDeDryade2[1], larmeDeDryade2[2]));
+			this.push(new Ingredient("Larme de Dryade", larmeDeDryade3[0], larmeDeDryade3[1], larmeDeDryade3[2]));
+			this.shuffle();
+			this.shuffle();
 			break;
 		default:
 			break;
