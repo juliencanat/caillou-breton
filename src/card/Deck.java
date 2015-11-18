@@ -35,10 +35,6 @@ public class Deck extends LinkedList<Card> {
 	
 }
 
-	public Card piocher() {
-		return this.remove();
-		
-	}
 	
 	public Deck(int typeOfDeck) {
 		super();

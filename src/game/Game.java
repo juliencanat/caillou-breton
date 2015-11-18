@@ -30,7 +30,7 @@ public abstract class Game {
 		int nbJoueur = user_input.nextInt();
 		this.players = new ArrayList<Player>();
 		for(int i = 0; i < nbJoueur ; i++) {
-			System.out.println("Quel nom pour le joueur " + i + " ?");
+			System.out.println("Quel nom pour le joueur " + (i+1) + " ?");
 			String name = user_input.next();
 			
 			players.add(i, new Player(name, this));
@@ -42,7 +42,7 @@ public abstract class Game {
 		for(ListIterator<Player> p = players.listIterator(); p.hasNext();) {
 			Player player = p.next();
 			for(int i = 0; i < 4 ; i++)
-				player.setHand(deck.remove());
+				player.setHand(deck.remove()); //Chaque joueur pioche 4 cartes 
 			
 			
 		}
@@ -60,10 +60,9 @@ public abstract class Game {
 
 
 	public void setSeason() {
-		this.season += season;
+		this.season++;
 	}
-
-
+	
 	public ArrayList<Player> getPlayers() {
 		return players;
 	}

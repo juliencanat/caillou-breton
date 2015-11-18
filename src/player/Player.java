@@ -40,6 +40,13 @@ public class Player {
 	}
 
 	public void playFarfadet(Ingredient card, Player victim) {
+		int season = currentGame.getSeason();
+		int[] farfadetStrength = card.getFarfadetVector();
+		
+		int rockStolen = victim.stealRocks(farfadetStrength[season]);
+		
+		this.nbRocks += rockStolen;
+		
 	
 	}
 
@@ -66,9 +73,21 @@ public class Player {
 	}
 
 	public void setNbMenhirs(int nbMenhirs) {
-		this.nbMenhirs = nbMenhirs;
-	}
+			this.nbMenhirs = nbMenhirs;
 
+	}
+	
+	public int stealRocks(int toSteal) {
+		if( toSteal > this.nbRocks) {
+			this.nbRocks -= toSteal;
+		return toSteal; 
+		}
+		else {
+			this.nbRocks = 0;
+			return (-this.nbRocks + toSteal);
+		}
+	}
+		
 	public String getName() {
 		return name;
 	}

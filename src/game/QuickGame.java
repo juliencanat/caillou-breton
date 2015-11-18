@@ -10,7 +10,7 @@ public class QuickGame extends Game {
 
 	public void designateWinner() {
 		
-			Player winner = new Player("V", this);
+			Player winner = this.players.get(0);
 			for(ListIterator<Player> p = players.listIterator(); p.hasNext();){
 				Player player = p.next();
 				if(player.getNbMenhirs() > winner.getNbMenhirs())
@@ -18,7 +18,7 @@ public class QuickGame extends Game {
 			}
 			System.out.println(winner.getName() + " wins !");
 			}
-	
+			//TODO : cas d'égalité
 
 	public QuickGame() {
 		super();
@@ -51,7 +51,7 @@ public class QuickGame extends Game {
 				else if(actionJoue.equals("F")) {
 					System.out.println("Quel joueur souhaitez vous voler ?");
 					int victim = user_input.nextInt();  
-					currentPlayer.playFarfadet((Ingredient) currentPlayer.getHand().get(carteJoue), game.getPlayers().get(victim));
+					currentPlayer.playFarfadet((Ingredient) currentPlayer.getHand().get(carteJoue), game.getPlayers().get(victim - 1));
 				}
 				else
 					System.out.println("Tour passé");
