@@ -1,5 +1,6 @@
 package game;
 
+import java.util.ArrayList;
 import java.util.ListIterator;
 import java.util.Scanner;
 
@@ -10,13 +11,28 @@ public class QuickGame extends Game {
 
 	public void designateWinner() {
 		
-			Player winner = this.players.get(0);
+			ArrayList<Player> winner = new ArrayList<Player>();
+			winner.add(this.players.get(0));
+			
 			for(ListIterator<Player> p = players.listIterator(); p.hasNext();){
+				p.next(); // Skip the first player
 				Player player = p.next();
-				if(player.getNbMenhirs() > winner.getNbMenhirs())
-					winner = player;
+				if(player.getNbMenhirs() > winner.get(0).getNbMenhirs()) {
+					winner.clear();
+					winner.add(0, player);
+				}
+				else if (player.getNbMenhirs() == winner.get(0).getNbMenhirs()) {
+					if(player.getNbRocks() > winner.get(0).getNbRocks()) {
+						winner.clear();
+						winner.add(0, player);
+					}
+					else if (player.getNbRocks() == winner.get(0).getNbRocks()) {
+						winner.add(player);
+					}
+				}
 			}
-			System.out.println(winner.getName() + " wins !");
+			for(Player w : winner)
+				System.out.println(w.getName() + " wins !");
 			}
 			//TODO : cas d'égalité
 
@@ -37,7 +53,7 @@ public class QuickGame extends Game {
 				System.out.println(currentPlayer.toString());
 				
 				System.out.println("Quelle carte voulez-vous jouer ?");
-				int carteJoue = user_input.nextInt();
+				int carteJoue = user_input.nextInt() - 1;
 				
 				System.out.println("Quelle action souhaitez vous effectuer : G/E/F ?");
 				

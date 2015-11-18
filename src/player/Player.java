@@ -78,13 +78,14 @@ public class Player {
 	}
 	
 	public int stealRocks(int toSteal) {
-		if( toSteal > this.nbRocks) {
+		if( toSteal <= this.nbRocks) {
 			this.nbRocks -= toSteal;
 		return toSteal; 
 		}
 		else {
+			int tmp = this.nbRocks;
 			this.nbRocks = 0;
-			return (-this.nbRocks + toSteal);
+			return (-tmp + toSteal);
 		}
 	}
 		
@@ -102,7 +103,7 @@ public class Player {
 
 	@Override
 	public String toString() {
-		return " nom=" + name + ", Graine(s)=" + nbRocks + ", Menhir(s)=" + nbMenhirs + ", Main=" + hand.toString();
+		return "Graine(s)=" + nbRocks + "\n"+ "Menhir(s)=" + nbMenhirs + "\n" + " Main=" + hand.toString() +"\n";
 	}
 	
 	

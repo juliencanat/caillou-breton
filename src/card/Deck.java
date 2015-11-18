@@ -1,5 +1,6 @@
 package card;
 
+//import java.util.ArrayList;
 import java.util.Collections;
 import java.util.LinkedList;
 
@@ -23,6 +24,8 @@ public class Deck extends LinkedList<Card> {
 	public final static int[][] larmeDeDryade1 = {{2,1,1,2}, {1,1,1,3}, {2,0,2,2}};
 	public final static int[][] larmeDeDryade2 = {{0,3,0,3}, {2,1,3,0}, {1,1,3,1}};
 	public final static int[][] larmeDeDryade3 = {{1,2,1,2}, {1,0,1,4}, {2,4,0,0}};
+	
+	//public final static ArrayList<int[][]> ListeCarte = new ArrayList<int[][]>(rayonDeLune1, rayonDeLune2]);
 	//Fin matrice des cartes ingrédients
 	
 

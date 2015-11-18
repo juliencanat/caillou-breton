@@ -29,8 +29,8 @@ public class Ingredient extends Card {
 
 	@Override
 	public String toString() {
-		return super.getName() + " : " + "Geant =" + Arrays.toString(giantVector) + ", Farfadet="
-				+ Arrays.toString(farfadetVector) + ", Engrais=" + Arrays.toString(fertilizerVector);
+		return super.getName() + " : \n" + "\tGeant =    " + Arrays.toString(giantVector)+ "\n" + "\tFarfadet = "
+				+ Arrays.toString(farfadetVector) + "\n" + "\tEngrais =  " + Arrays.toString(fertilizerVector) + "\n";
 	}
 
 	
