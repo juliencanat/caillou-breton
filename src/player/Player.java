@@ -2,6 +2,7 @@ package player;
 
 
 import java.util.ArrayList;
+
 import game.*;
 import card.*;
 
@@ -9,10 +10,9 @@ import card.*;
 public class Player {
 	
 	private String name;
-	
-
 	private int nbRocks;
 	private int nbMenhirs;
+	private int[] watchDogProtection;
 	private ArrayList<Card> hand;
 	private Game currentGame;
 	
@@ -50,6 +50,22 @@ public class Player {
 	
 	}
 
+	public void playGiantMole(GiantMole card, Player victim) {
+		int season = currentGame.getSeason();
+		int[] allyStrength = card.getStrengthVector();
+			victim.setNbMenhirs(victim.getNbMenhirs() -allyStrength[season]);
+		
+	}
+	
+	
+	public void playWatchDog(WatchDog card) {
+		int[] allyStrength = card.getStrengthVector();
+		this.setWatchDogProtection(allyStrength);
+		
+	}
+	
+	
+
 	public Player(String name, Game game) {
 		super();
 		this.name = name;
@@ -73,10 +89,18 @@ public class Player {
 	}
 
 	public void setNbMenhirs(int nbMenhirs) {
+		if(nbMenhirs > 0)
 			this.nbMenhirs = nbMenhirs;
+		else
+			this.nbMenhirs = 0;
 
 	}
-	
+	public int[] getWatchDogProtection() {
+		return watchDogProtection;
+	}
+	public void setWatchDogProtection(int[] watchDogProtection) {
+		this.watchDogProtection = watchDogProtection;
+	}
 	public int stealRocks(int toSteal) {
 		if( toSteal <= this.nbRocks) {
 			this.nbRocks -= toSteal;
@@ -103,7 +127,7 @@ public class Player {
 
 	@Override
 	public String toString() {
-		return "Graine(s)=" + nbRocks + "\n"+ "Menhir(s)=" + nbMenhirs + "\n" + " Main=" + hand.toString() +"\n";
+		return "Graine(s)=" + nbRocks + "\n"+ "Menhir(s)=" + nbMenhirs + "\n\n" + " Main=" + hand.toString() +"\n";
 	}
 	
 	

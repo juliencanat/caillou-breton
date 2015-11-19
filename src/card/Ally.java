@@ -2,20 +2,21 @@ package card;
 
 
 public class Ally extends Card {
+
 	
-	private int typeAllié;
 
-	public int getTypeAllié() {
-		return typeAllié;
+	private int[] strengthVector;
+	
+	public int[] getStrengthVector() {
+		return strengthVector;
 	}
 
-	public void setTypeAllié(int typeAllié) {
-		this.typeAllié = typeAllié;
-	}
 
-	public Ally(String name) {
+	public Ally(String name, int[] strengthVector) {
 		super(name);
-		// TODO Auto-generated constructor stub
+
+		this.strengthVector = strengthVector;
+		
 	}
 
 }

@@ -6,10 +6,11 @@ import java.util.Scanner;
 
 import card.Ingredient;
 import player.Player;
+import view.Console;
 
 public class QuickGame extends Game {
 
-	public void designateWinner() {
+	public ArrayList<Player> designateWinner() {
 		
 			ArrayList<Player> winner = new ArrayList<Player>();
 			winner.add(this.players.get(0));
@@ -31,8 +32,7 @@ public class QuickGame extends Game {
 					}
 				}
 			}
-			for(Player w : winner)
-				System.out.println(w.getName() + " wins !");
+				return winner;
 			}
 			//TODO : cas d'égalité
 
@@ -43,41 +43,38 @@ public class QuickGame extends Game {
 
 	public static void main(String[] args) {
 		QuickGame game = new QuickGame();
-		Scanner user_input = new Scanner( System.in );
+		Scanner userInput = new Scanner( System.in );
+		Console console = new Console();
 		
 		while(game.getSeason() <= WINTER) {
-			System.out.println("Saison actuelle : " + SEASONS[game.getSeason()]);
+			
 			for(ListIterator<Player> p = game.getPlayers().listIterator(); p.hasNext();) {
 				Player currentPlayer = p.next();
-				System.out.println("Au tour de " + currentPlayer.getName());
-				System.out.println(currentPlayer.toString());
 				
-				System.out.println("Quelle carte voulez-vous jouer ?");
-				int carteJoue = user_input.nextInt() - 1;
-				
-				System.out.println("Quelle action souhaitez vous effectuer : G/E/F ?");
-				
-				String actionJoue = user_input.next();
+				console.getGameDetails(game);
+				console.getPlayerDetails(currentPlayer);
+				int playedCard = console.choiceCard(userInput);
+				String playedAction = console.choiceAction(userInput);
 				
 				
-				if(actionJoue.equals("G"))
-					currentPlayer.playGiant((Ingredient) currentPlayer.getHand().get(carteJoue));
-				else if(actionJoue.equals("E"))
-					currentPlayer.playFertilizer((Ingredient) currentPlayer.getHand().get(carteJoue));
-				else if(actionJoue.equals("F")) {
-					System.out.println("Quel joueur souhaitez vous voler ?");
-					int victim = user_input.nextInt();  
-					currentPlayer.playFarfadet((Ingredient) currentPlayer.getHand().get(carteJoue), game.getPlayers().get(victim - 1));
+				if(playedAction.equals("G"))
+					currentPlayer.playGiant((Ingredient) currentPlayer.getHand().get(playedCard));
+				else if(playedAction.equals("E"))
+					currentPlayer.playFertilizer((Ingredient) currentPlayer.getHand().get(playedCard));
+				else if(playedAction.equals("F")) {
+					int victim = console.choiceVictim(userInput);
+					currentPlayer.playFarfadet((Ingredient) currentPlayer.getHand().get(playedCard), game.getPlayers().get(victim - 1));
 				}
 				else
 					System.out.println("Tour passé");
 				
-				currentPlayer.getHand().remove(carteJoue); //On retire la carte jouée
+				currentPlayer.getHand().remove(playedCard); //On retire la carte jouée
 			}
 			game.setSeason(); // Change the season to the next one
 		}
-			game.designateWinner();
-			user_input.close();
+			
+			console.displayWinner(game.designateWinner());
+			userInput.close();
 	}
 
 }

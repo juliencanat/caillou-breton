@@ -51,7 +51,7 @@ public abstract class Game {
 
 
 
-	public abstract void designateWinner(); 
+	public abstract ArrayList<Player> designateWinner(); 
 	
 	
 	public int getSeason() {
