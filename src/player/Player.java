@@ -14,6 +14,10 @@ public class Player {
 	private int nbMenhirs;
 	private int[] watchDogProtection;
 	private ArrayList<Card> hand;
+	public Game getCurrentGame() {
+		return currentGame;
+	}
+
 	private Game currentGame;
 	
 	
